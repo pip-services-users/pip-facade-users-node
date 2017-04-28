@@ -1,0 +1,92 @@
+---
+# Container info
+- descriptor: "pip-services-container:container-info:default:default:*"
+  name: "pip-vault-us1-alpha"
+  description: "Client facade for Pip.Vault US1"
+
+# Console logger
+- descriptor: "pip-services-commons:logger:console:default:*"
+  level: trace
+
+# Log counters
+- descriptor: "pip-services-commons:counters:log:default:*"
+
+# Discovery service
+- descriptor: "pip-services-commons:discovery:memory:default:*"
+  mongodb: uri=mongodb://localhost/test
+
+# Credential store
+- descriptor: "pip-services-commons:credential-store:memory:default:*"
+  mongodb: username=;password=
+
+############# User management components ##############
+
+# Activities components
+- descriptor: "pip-services-activities:persistence:mongodb:default:*"
+  connection:
+    discovery_key: mongodb
+- descriptor: "pip-services-activities:controller:default:default:*"
+- descriptor: "pip-services-activities:client:direct:default:*"
+
+# Accounts components
+- descriptor: "pip-services-accounts:persistence:mongodb:default:*"
+  connection:
+    discovery_key: mongodb
+- descriptor: "pip-services-accounts:controller:default:default:*"
+- descriptor: "pip-services-accounts:client:direct:default:*"
+
+# Email components
+- descriptor: "pip-services-email:persistence:mongodb:default:*"
+  connection:
+    discovery_key: mongodb
+- descriptor: "pip-services-email:controller:default:default:*"
+  options:
+    magic_code: "magic"
+- descriptor: "pip-services-email:client:direct:default:*"
+
+# Passwords components
+- descriptor: "pip-services-passwords:persistence:mongodb:default:*"
+  connection:
+    discovery_key: mongodb
+- descriptor: "pip-services-passwords:controller:default:default:*"
+  options:
+    magic_code: "magic"
+- descriptor: "pip-services-passwords:client:direct:default:*"
+
+# Roles components
+- descriptor: "pip-services-roles:persistence:mongodb:default:*"
+  connection:
+    discovery_key: mongodb
+- descriptor: "pip-services-roles:controller:default:default:*"
+- descriptor: "pip-services-roles:client:direct:default:*"
+
+# Session components
+- descriptor: "pip-services-sessions:persistence:mongodb:default:*"
+  connection:
+    discovery_key: mongodb
+- descriptor: "pip-services-sessions:controller:default:default:*"
+- descriptor: "pip-services-sessions:client:direct:default:*"
+
+################ REST API Routes ##############
+
+# Main facade service
+- descriptor: "pip-services-facade:service:main:default:*"
+  root_path: ""
+  connection:
+    protocol: "http"
+    host: "0.0.0.0"
+    port: 8080
+  options:
+    debug: true
+    maintenance_enabled: false
+    max_req_size: "1mb"
+
+# Version 1 facade service
+- descriptor: "pip-services-facade:service:test:api-1.0:*"
+  root_path: "/api/1.0"
+
+# Pip.Services Operations
+- descriptor: "pip-facade-users:operations:sessions:default:1.0"
+- descriptor: "pip-facade-users:operations:accounts:default:1.0"
+- descriptor: "pip-facade-users:operations:activities:default:1.0"
+- descriptor: "pip-facade-users:operations:email-settings:default:1.0"

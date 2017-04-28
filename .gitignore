@@ -1,0 +1,6 @@
+/node_modules
+/.idea
+/debug.log
+/error.log
+/obj/test
+/config/config.yaml
