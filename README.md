@@ -1,13 +1,13 @@
-# Facade Operations for Infrastructure Pip.Services in Node.js
+# Facade Operations for User Management Pip.Services in Node.js
 
 This module contains REST operations for [Client Facade](github.com:pip-services/pip-services-facade-node.git).
 Using these operations developers are able to create facades and fill them with pre-built REST operations for:
 
-* Trace and error logging
-* System event logging
-* Performance counters
-* Statistical counters
-* Blob storage
+* Signin/signup and session management
+* User accounts
+* Password management
+* Email settings
+* Role management
 
 <a name="links"></a> Quick Links:
 
@@ -51,15 +51,15 @@ export class MyFacadeServiceV1 extends MainFacadeService {
 
 Get or create operations and register routes in the facade service
 ```typescript
-import { LoggingOperations } from 'pip-facade-infrastructure-node';
+import { AccountsOperations } from 'pip-facade-users-node';
 
 export class MyFacadeServiceV1 extends MainFacadeService {
 
     public register() {
         let logging = new LoggingOperations();
-        this.registerRoute('get', '/logging', logging.getMessagesOperation());
-        this.registerRoute('get', '/logging/errors', logging.getErrorsOperation());
-        this.registerRoute('del', '/logging', logging.clearMessagesOperation());
+        this.registerRoute('get', '/accounts', logging.getAccountsOperation());
+        this.registerRoute('get', '/accounts/current', logging.getCurrentAccountOperation());
+        this.registerRoute('get', '/accounts/:account_id', logging.getAccountOperation());
     }
 
 }
@@ -75,15 +75,15 @@ myFacade.configure(ConfigParams.fromTuples(
     'connection.port', 8080
 ));
 
-let loggingClient = new LoggingHttpClientV1();
-loggingClient.configure(ConfigParams.fromTuples(
+let accountsClient = new AccountsHttpClientV1();
+accountsClient.configure(ConfigParams.fromTuples(
     'connection.protocol', 'http',
     'connection.host', 'localhost',
     'connection.port', 8082
 ));
 
 let references = References.fromTuples(
-    new Descriptor('pip-services-logging', 'client', 'http', 'default', '1.0'), loggingClient
+    new Descriptor('pip-services-accounts', 'client', 'http', 'default', '1.0'), accountsClient
 );
 myFacade.setReferences(references)
 
@@ -97,7 +97,7 @@ Alternatively to manual instantiation and cross-referencing you can use Pip.Serv
 and instantiate the whole facade using simple configuration:
 ```yaml
 ---
--descriptor: pip-services-logging:client:http:default:1.0
+-descriptor: pip-services-accounts:client:http:default:1.0
  connection:
    protocol: http
    host: localhost
