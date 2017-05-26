@@ -30,7 +30,7 @@ class RolesOperationsV1 extends pip_services_facade_node_1.FacadeOperations {
     }
     getUserRoles(req, res) {
         let userId = req.route.params.user_id;
-        this._rolesClient.getRoles(null, userId, this.sendResult(req, res));
+        this._rolesClient.getRolesById(null, userId, this.sendResult(req, res));
     }
     grantUserRoles(req, res) {
         let userId = req.route.params.user_id;

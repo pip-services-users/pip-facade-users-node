@@ -239,7 +239,7 @@ class SessionsOperationsV1 extends pip_services_facade_node_1.FacadeOperations {
             // Retrieve user roles
             (callback) => {
                 if (this._rolesClient) {
-                    this._rolesClient.getRoles(null, account.id, (err, data) => {
+                    this._rolesClient.getRolesById(null, account.id, (err, data) => {
                         roles = data;
                         callback(err);
                     });

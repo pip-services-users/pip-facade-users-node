@@ -46,7 +46,7 @@ export class RolesOperationsV1  extends FacadeOperations {
     private getUserRoles(req: any, res: any): void {
         let userId = req.route.params.user_id;
 
-        this._rolesClient.getRoles(
+        this._rolesClient.getRolesById(
             null, userId, this.sendResult(req, res)
         );
     }
