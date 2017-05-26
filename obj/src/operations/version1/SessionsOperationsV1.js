@@ -276,7 +276,7 @@ class SessionsOperationsV1 extends pip_services_facade_node_1.FacadeOperations {
     getUserSessions(req, res) {
         let filter = this.getFilterParams(req);
         let paging = this.getPagingParams(req);
-        let userId = req.route.params.user_id;
+        let userId = req.route.params.user_id || req.route.params.account_id;
         filter.setAsObject('user_id', userId);
         this._sessionsClient.getSessions(null, filter, paging, this.sendResult(req, res));
     }

@@ -41,7 +41,9 @@ export class TestFacadeService extends PartitionFacadeService {
             this.registerRoute('get', '/accounts', accounts.getAccountsOperation());
             this.registerRoute('get', '/accounts/current', accounts.getCurrentAccountOperation());
             this.registerRoute('get', '/accounts/:user_id', accounts.getAccountOperation());
+            this.registerRoute('post', '/accounts', accounts.createAccountOperation());
             this.registerRoute('put', '/accounts/:user_id', accounts.updateAccountOperation());
+            this.registerRoute('del', '/accounts/:user_id', accounts.deleteAccountOperation());
         }
 
         let activities = this._dependencyResolver.getOneOptional<ActivitiesOperationsV1>('activities');

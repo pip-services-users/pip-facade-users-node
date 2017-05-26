@@ -44,9 +44,21 @@ export class AccountsOperationsV1  extends FacadeOperations {
         }
     }
 
+    public createAccountOperation() {
+        return (req, res) => {
+            this.createAccount(req, res);
+        }
+    }
+
     public updateAccountOperation() {
         return (req, res) => {
             this.updateAccount(req, res);
+        }
+    }
+
+    public deleteAccountOperation() {
+        return (req, res) => {
+            this.deleteAccount(req, res);
         }
     }
 
@@ -66,20 +78,36 @@ export class AccountsOperationsV1  extends FacadeOperations {
     }
 
     private getAccount(req: any, res: any): void {
-        let userId = req.route.params.user_id;
+        let userId = req.route.params.account_id || req.route.params.user_id;
 
         this._accountsClient.getAccountById(
             null, userId, this.sendResult(req, res)
         );
     }
 
+    private createAccount(req: any, res: any): void {
+        let account = req.body;
+
+        this._accountsClient.createAccount(
+            null, account, this.sendResult(req, res)
+        );
+    }
+
     private updateAccount(req: any, res: any): void {
-        let userId = req.route.params.user_id;
+        let userId = req.route.params.account_id || req.route.params.user_id;
         let account = req.body;
         account.id = userId;
 
         this._accountsClient.updateAccount(
             null, account, this.sendResult(req, res)
+        );
+    }
+
+    private deleteAccount(req: any, res: any): void {
+        let userId = req.route.params.account_id || req.route.params.user_id;
+
+        this._accountsClient.deleteAccountById(
+            null, userId, this.sendResult(req, res)
         );
     }
 }

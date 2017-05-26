@@ -28,9 +28,19 @@ class AccountsOperationsV1 extends pip_services_facade_node_1.FacadeOperations {
             this.getAccount(req, res);
         };
     }
+    createAccountOperation() {
+        return (req, res) => {
+            this.createAccount(req, res);
+        };
+    }
     updateAccountOperation() {
         return (req, res) => {
             this.updateAccount(req, res);
+        };
+    }
+    deleteAccountOperation() {
+        return (req, res) => {
+            this.deleteAccount(req, res);
         };
     }
     getAccounts(req, res) {
@@ -42,14 +52,22 @@ class AccountsOperationsV1 extends pip_services_facade_node_1.FacadeOperations {
         this._accountsClient.getAccountById(null, req.user_id, this.sendResult(req, res));
     }
     getAccount(req, res) {
-        let userId = req.route.params.user_id;
+        let userId = req.route.params.account_id || req.route.params.user_id;
         this._accountsClient.getAccountById(null, userId, this.sendResult(req, res));
     }
+    createAccount(req, res) {
+        let account = req.body;
+        this._accountsClient.createAccount(null, account, this.sendResult(req, res));
+    }
     updateAccount(req, res) {
-        let userId = req.route.params.user_id;
+        let userId = req.route.params.account_id || req.route.params.user_id;
         let account = req.body;
         account.id = userId;
         this._accountsClient.updateAccount(null, account, this.sendResult(req, res));
+    }
+    deleteAccount(req, res) {
+        let userId = req.route.params.account_id || req.route.params.user_id;
+        this._accountsClient.deleteAccountById(null, userId, this.sendResult(req, res));
     }
 }
 exports.AccountsOperationsV1 = AccountsOperationsV1;

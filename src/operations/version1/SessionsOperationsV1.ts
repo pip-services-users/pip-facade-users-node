@@ -367,7 +367,7 @@ export class SessionsOperationsV1  extends FacadeOperations {
     private getUserSessions(req: any, res: any): void {
         let filter = this.getFilterParams(req);
         let paging = this.getPagingParams(req);
-        let userId = req.route.params.user_id;
+        let userId = req.route.params.user_id || req.route.params.account_id;
         filter.setAsObject('user_id', userId);
 
         this._sessionsClient.getSessions(

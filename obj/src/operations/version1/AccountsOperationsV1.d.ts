@@ -7,9 +7,13 @@ export declare class AccountsOperationsV1 extends FacadeOperations {
     getAccountsOperation(): (req: any, res: any) => void;
     getCurrentAccountOperation(): (req: any, res: any) => void;
     getAccountOperation(): (req: any, res: any) => void;
+    createAccountOperation(): (req: any, res: any) => void;
     updateAccountOperation(): (req: any, res: any) => void;
+    deleteAccountOperation(): (req: any, res: any) => void;
     private getAccounts(req, res);
     private getCurrentAccount(req, res);
     private getAccount(req, res);
+    private createAccount(req, res);
     private updateAccount(req, res);
+    private deleteAccount(req, res);
 }
