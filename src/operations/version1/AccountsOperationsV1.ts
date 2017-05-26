@@ -109,7 +109,7 @@ export class AccountsOperationsV1  extends FacadeOperations {
                 let newAccount = <AccountV1>{
                     name: data.name,
                     login: data.login,
-                    change_pwd: changePassword,  // User has to change password
+                    change_pwd: data.change_pwd || changePassword,
                     language: data.language,
                     theme: data.theme,
                     time_zone: data.time_zone
