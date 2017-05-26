@@ -209,7 +209,7 @@ export class SessionsOperationsV1  extends FacadeOperations {
             (callback) => {
                 let newAccount = <AccountV1>{
                     name: signupData.name,
-                    login: signupData.login,
+                    login: signupData.login || signupData.email,
                     language: signupData.language,
                     theme: signupData.theme,
                     time_zone: signupData.time_zone

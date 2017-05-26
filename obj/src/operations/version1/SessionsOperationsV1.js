@@ -154,7 +154,7 @@ class SessionsOperationsV1 extends pip_services_facade_node_1.FacadeOperations {
             (callback) => {
                 let newAccount = {
                     name: signupData.name,
-                    login: signupData.login,
+                    login: signupData.login || signupData.email,
                     language: signupData.language,
                     theme: signupData.theme,
                     time_zone: signupData.time_zone

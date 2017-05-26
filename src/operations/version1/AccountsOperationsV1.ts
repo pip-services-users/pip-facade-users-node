@@ -108,8 +108,8 @@ export class AccountsOperationsV1  extends FacadeOperations {
             (callback) => {
                 let newAccount = <AccountV1>{
                     name: data.name,
-                    login: data.login,
-                    change_pwd: data.change_pwd || changePassword,
+                    login: data.login || data.email, // Use email as login by default
+                    change_pwd: data.change_pwd || changePassword, // Enforce change password
                     language: data.language,
                     theme: data.theme,
                     time_zone: data.time_zone

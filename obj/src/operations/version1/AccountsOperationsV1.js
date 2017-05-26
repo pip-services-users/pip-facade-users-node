@@ -72,7 +72,7 @@ class AccountsOperationsV1 extends pip_services_facade_node_1.FacadeOperations {
             (callback) => {
                 let newAccount = {
                     name: data.name,
-                    login: data.login,
+                    login: data.login || data.email,
                     change_pwd: data.change_pwd || changePassword,
                     language: data.language,
                     theme: data.theme,
