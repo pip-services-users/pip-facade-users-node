@@ -73,7 +73,7 @@ class AccountsOperationsV1 extends pip_services_facade_node_1.FacadeOperations {
                 let newAccount = {
                     name: data.name,
                     login: data.login || data.email,
-                    change_pwd: data.change_pwd || changePassword,
+                    //change_pwd: data.change_pwd || changePassword, // Enforce change password
                     language: data.language,
                     theme: data.theme,
                     time_zone: data.time_zone
