@@ -2,6 +2,8 @@ import { IReferences } from 'pip-services-commons-node';
 import { FacadeOperations } from 'pip-services-facade-node';
 export declare class AccountsOperationsV1 extends FacadeOperations {
     private _accountsClient;
+    private _passwordsClient;
+    private _emailClient;
     constructor();
     setReferences(references: IReferences): void;
     getAccountsOperation(): (req: any, res: any) => void;
