@@ -98,10 +98,7 @@ export class AccountsOperationsV1  extends FacadeOperations {
     private createAccount(req: any, res: any): void {
         let data = req.body;
         let account: AccountV1 = null;
-
-        // Todo: make better password generation
-        let changePassword = data.password == null;
-        let password = data.password || IdGenerator.nextShort();
+        let password = data.password;
         
         async.series([
             // Create account
@@ -109,7 +106,6 @@ export class AccountsOperationsV1  extends FacadeOperations {
                 let newAccount = <AccountV1>{
                     name: data.name,
                     login: data.login || data.email, // Use email as login by default
-                    //change_pwd: data.change_pwd || changePassword, // Enforce change password
                     language: data.language,
                     theme: data.theme,
                     time_zone: data.time_zone
@@ -125,9 +121,20 @@ export class AccountsOperationsV1  extends FacadeOperations {
             },
             // Create password for the account
             (callback) => {
-                this._passwordsClient.setPassword(
-                    null, account.id, password, callback
-                );
+                if (password != null) {
+                    // Use provided password
+                    this._passwordsClient.setPassword(
+                        null, account.id, password, callback
+                    );
+                } else {
+                    // Set temporary password
+                    this._passwordsClient.setTempPassword(
+                        null, account.id, (err, data) => {
+                            password = data;
+                            callback(err);
+                        }
+                    )
+                }
             },
             // Create email settings for the account
             (callback) => {

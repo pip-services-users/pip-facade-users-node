@@ -3,7 +3,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 let _ = require('lodash');
 let async = require('async');
 const pip_services_commons_node_1 = require("pip-services-commons-node");
-const pip_services_commons_node_2 = require("pip-services-commons-node");
 const pip_clients_email_node_1 = require("pip-clients-email-node");
 const pip_services_facade_node_1 = require("pip-services-facade-node");
 class AccountsOperationsV1 extends pip_services_facade_node_1.FacadeOperations {
@@ -64,16 +63,13 @@ class AccountsOperationsV1 extends pip_services_facade_node_1.FacadeOperations {
     createAccount(req, res) {
         let data = req.body;
         let account = null;
-        // Todo: make better password generation
-        let changePassword = data.password == null;
-        let password = data.password || pip_services_commons_node_2.IdGenerator.nextShort();
+        let password = data.password;
         async.series([
             // Create account
             (callback) => {
                 let newAccount = {
                     name: data.name,
                     login: data.login || data.email,
-                    //change_pwd: data.change_pwd || changePassword, // Enforce change password
                     language: data.language,
                     theme: data.theme,
                     time_zone: data.time_zone
@@ -85,7 +81,17 @@ class AccountsOperationsV1 extends pip_services_facade_node_1.FacadeOperations {
             },
             // Create password for the account
             (callback) => {
-                this._passwordsClient.setPassword(null, account.id, password, callback);
+                if (password != null) {
+                    // Use provided password
+                    this._passwordsClient.setPassword(null, account.id, password, callback);
+                }
+                else {
+                    // Set temporary password
+                    this._passwordsClient.setTempPassword(null, account.id, (err, data) => {
+                        password = data;
+                        callback(err);
+                    });
+                }
             },
             // Create email settings for the account
             (callback) => {

@@ -5,11 +5,14 @@ export class SessionUserV1 {
     public name: string;
     public create_time: Date;
 
+    /* Security info **/
+    public roles: string[];
+    public change_pwd_time: Date;
+
     /* User information */
     public time_zone: string;
     public language: string;
     public theme: string;
-    public roles: string[];
 
     /* Custom fields */
     public custom_hdr: any;

@@ -12,6 +12,7 @@ import { HttpRequestDetector } from 'pip-services-net-node';
 import { IAccountsClientV1 } from 'pip-clients-accounts-node';
 import { AccountV1 } from 'pip-clients-accounts-node';
 import { IPasswordsClientV1 } from 'pip-clients-passwords-node';
+import { UserPasswordInfoV1 } from 'pip-clients-passwords-node';
 import { IRolesClientV1 } from 'pip-clients-roles-node';
 import { ISessionsClientV1 } from 'pip-clients-sessions-node';
 import { SessionV1 } from 'pip-clients-sessions-node';
@@ -153,8 +154,17 @@ export class SessionsOperationsV1  extends FacadeOperations {
 
     private openSession(req: any, res: any, account: AccountV1, roles: string[]): void {
         let session: SessionV1;
+        let passwordInfo: UserPasswordInfoV1;
 
         async.series([
+            (callback) => {
+                this._passwordsClient.getPasswordInfo(
+                    null, account.id, (err, data) => {
+                        passwordInfo = data;
+                        callback(err);
+                    }
+                )
+            },
             (callback) => {
                 let user = <SessionUserV1>{
                     id: account.id,
@@ -165,6 +175,7 @@ export class SessionsOperationsV1  extends FacadeOperations {
                     language: account.language,
                     theme: account.theme,
                     roles: roles,
+                    change_pwd_time: passwordInfo != null ? passwordInfo.change_time : null,
                     custom_hdr: account.custom_hdr,
                     custom_dat: account.custom_dat
                 };
@@ -181,7 +192,7 @@ export class SessionsOperationsV1  extends FacadeOperations {
                         callback(err);
                     }
                 );
-            },
+            }
         ], (err) => {
             if (err) 
                 this.sendError(req, res, err);

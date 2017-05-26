@@ -108,7 +108,14 @@ class SessionsOperationsV1 extends pip_services_facade_node_1.FacadeOperations {
     }
     openSession(req, res, account, roles) {
         let session;
+        let passwordInfo;
         async.series([
+            (callback) => {
+                this._passwordsClient.getPasswordInfo(null, account.id, (err, data) => {
+                    passwordInfo = data;
+                    callback(err);
+                });
+            },
             (callback) => {
                 let user = {
                     id: account.id,
@@ -119,6 +126,7 @@ class SessionsOperationsV1 extends pip_services_facade_node_1.FacadeOperations {
                     language: account.language,
                     theme: account.theme,
                     roles: roles,
+                    change_pwd_time: passwordInfo != null ? passwordInfo.change_time : null,
                     custom_hdr: account.custom_hdr,
                     custom_dat: account.custom_dat
                 };
@@ -129,7 +137,7 @@ class SessionsOperationsV1 extends pip_services_facade_node_1.FacadeOperations {
                     session = data;
                     callback(err);
                 });
-            },
+            }
         ], (err) => {
             if (err)
                 this.sendError(req, res, err);
