@@ -51,7 +51,7 @@ export class TestFacadeService extends PartitionFacadeService {
         if (activities) {
             this.registerRoute('get', '/activities', activities.getActivitiesOperation());
             this.registerRoute('get', '/activities/:party_id', activities.getPartyActivitiesOperation());
-            this.registerRoute('post', '/activities/:party_id', activities.logPartyActivityOperation());
+            this.registerRoute('post', '/activities', activities.logPartyActivityOperation());
         }
 
         let passwords = this._dependencyResolver.getOneOptional<PasswordsOperationsV1>('passwords');
