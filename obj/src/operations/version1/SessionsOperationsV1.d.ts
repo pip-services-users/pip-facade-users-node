@@ -22,6 +22,7 @@ export declare class SessionsOperationsV1 extends FacadeOperations {
     getSessionsOperation(): (req: any, res: any) => void;
     restoreSessionOperation(): (req: any, res: any) => void;
     getUserSessionsOperation(): (req: any, res: any) => void;
+    getCurrentSessionOperation(): (req: any, res: any) => void;
     private loadSession(req, res, next);
     private openSession(req, res, account, roles);
     private signup(req, res);
@@ -31,4 +32,5 @@ export declare class SessionsOperationsV1 extends FacadeOperations {
     private getSessions(req, res);
     private restoreSession(req, res);
     private getUserSessions(req, res);
+    private getCurrentSession(req, res);
 }

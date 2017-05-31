@@ -33,6 +33,7 @@ export class TestFacadeService extends PartitionFacadeService {
 
             this.registerRoute('get', '/sessions', sessions.getSessionsOperation());
             this.registerRoute('post', '/sessions/restore', sessions.restoreSessionOperation());
+            this.registerRoute('get', '/sessions/current', sessions.getCurrentSessionOperation());
             this.registerRoute('get', '/sessions/:user_id', sessions.getUserSessionsOperation());
         }
 
