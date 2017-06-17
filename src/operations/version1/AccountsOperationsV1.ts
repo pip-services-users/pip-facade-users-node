@@ -185,8 +185,8 @@ export class AccountsOperationsV1  extends FacadeOperations {
             (callback) => {
                 if (newAccount && req.session_id && req.user
                     && this._sessionsClient && req.user.id == newAccount.id) {
-                    let data = _.assign(req.user, newAccount);
-                    this._sessionsClient.storeSessionData(null, req.session_id, data, callback);
+                    let user = _.assign(req.user, newAccount);
+                    this._sessionsClient.updateSessionUser(null, req.session_id, user, callback);
                 } else callback();
             }
         ], (err) => {
