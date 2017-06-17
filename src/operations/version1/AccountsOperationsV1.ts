@@ -12,6 +12,7 @@ import { AccountV1 } from 'pip-clients-accounts-node';
 import { IPasswordsClientV1 } from 'pip-clients-passwords-node';
 import { IEmailClientV1 } from 'pip-clients-email-node';
 import { EmailSettingsV1 } from 'pip-clients-email-node';
+import { ISessionsClientV1 } from 'pip-clients-sessions-node';
 
 import { FacadeOperations } from 'pip-services-facade-node';
 
@@ -19,6 +20,7 @@ export class AccountsOperationsV1  extends FacadeOperations {
     private _accountsClient: IAccountsClientV1;
     private _passwordsClient: IPasswordsClientV1;
     private _emailClient: IEmailClientV1;
+    private _sessionsClient: ISessionsClientV1;
 
     public constructor() {
         super();
@@ -26,6 +28,7 @@ export class AccountsOperationsV1  extends FacadeOperations {
         this._dependencyResolver.put('accounts', new Descriptor('pip-services-accounts', 'client', '*', '*', '1.0'));
         this._dependencyResolver.put('passwords', new Descriptor('pip-services-passwords', 'client', '*', '*', '1.0'));
         this._dependencyResolver.put('email', new Descriptor('pip-services-email', 'client', '*', '*', '1.0'));
+        this._dependencyResolver.put('sessions', new Descriptor('pip-services-sessions', 'client', '*', '*', '1.0'));
     }
 
     public setReferences(references: IReferences): void {
@@ -34,6 +37,7 @@ export class AccountsOperationsV1  extends FacadeOperations {
         this._accountsClient = this._dependencyResolver.getOneRequired<IAccountsClientV1>('accounts');
         this._passwordsClient = this._dependencyResolver.getOneRequired<IPasswordsClientV1>('passwords');
         this._emailClient = this._dependencyResolver.getOneOptional<IEmailClientV1>('email');
+        this._sessionsClient = this._dependencyResolver.getOneRequired<ISessionsClientV1>('sessions');
     }
 
     public getAccountsOperation() {
@@ -165,10 +169,34 @@ export class AccountsOperationsV1  extends FacadeOperations {
         let userId = req.route.params.account_id || req.route.params.user_id;
         let account = req.body;
         account.id = userId;
+        let newAccount: AccountV1;
 
-        this._accountsClient.updateAccount(
-            null, account, this.sendResult(req, res)
-        );
+        async.series([
+            // Update account
+            (callback) => {
+                this._accountsClient.updateAccount(
+                    null, account, (err, data) => {
+                        newAccount = data;
+                        callback(err);
+                    }
+                );
+            },
+            // Update session data
+            (callback) => {
+                if (newAccount && req.session_id && req.user
+                    && this._sessionsClient && req.user.id == newAccount.id) {
+                    let data = _.assign(req.user, newAccount);
+                    this._sessionsClient.storeSessionData(null, req.session_id, data, callback);
+                } else callback();
+            }
+        ], (err) => {
+            if (err)
+                this.sendError(req, res, err);
+            else if (newAccount == null)
+                res.json(204);
+            else 
+                res.json(newAccount);
+        });
     }
 
     private deleteAccount(req: any, res: any): void {

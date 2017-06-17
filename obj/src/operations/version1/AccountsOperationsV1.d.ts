@@ -4,6 +4,7 @@ export declare class AccountsOperationsV1 extends FacadeOperations {
     private _accountsClient;
     private _passwordsClient;
     private _emailClient;
+    private _sessionsClient;
     constructor();
     setReferences(references: IReferences): void;
     getAccountsOperation(): (req: any, res: any) => void;

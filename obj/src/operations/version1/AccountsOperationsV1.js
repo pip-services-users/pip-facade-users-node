@@ -11,12 +11,14 @@ class AccountsOperationsV1 extends pip_services_facade_node_1.FacadeOperations {
         this._dependencyResolver.put('accounts', new pip_services_commons_node_1.Descriptor('pip-services-accounts', 'client', '*', '*', '1.0'));
         this._dependencyResolver.put('passwords', new pip_services_commons_node_1.Descriptor('pip-services-passwords', 'client', '*', '*', '1.0'));
         this._dependencyResolver.put('email', new pip_services_commons_node_1.Descriptor('pip-services-email', 'client', '*', '*', '1.0'));
+        this._dependencyResolver.put('sessions', new pip_services_commons_node_1.Descriptor('pip-services-sessions', 'client', '*', '*', '1.0'));
     }
     setReferences(references) {
         super.setReferences(references);
         this._accountsClient = this._dependencyResolver.getOneRequired('accounts');
         this._passwordsClient = this._dependencyResolver.getOneRequired('passwords');
         this._emailClient = this._dependencyResolver.getOneOptional('email');
+        this._sessionsClient = this._dependencyResolver.getOneRequired('sessions');
     }
     getAccountsOperation() {
         return (req, res) => {
@@ -117,7 +119,33 @@ class AccountsOperationsV1 extends pip_services_facade_node_1.FacadeOperations {
         let userId = req.route.params.account_id || req.route.params.user_id;
         let account = req.body;
         account.id = userId;
-        this._accountsClient.updateAccount(null, account, this.sendResult(req, res));
+        let newAccount;
+        async.series([
+            // Update account
+            (callback) => {
+                this._accountsClient.updateAccount(null, account, (err, data) => {
+                    newAccount = data;
+                    callback(err);
+                });
+            },
+            // Update session data
+            (callback) => {
+                if (newAccount && req.session_id && req.user
+                    && this._sessionsClient && req.user.id == newAccount.id) {
+                    let data = _.assign(req.user, newAccount);
+                    this._sessionsClient.storeSessionData(null, req.session_id, data, callback);
+                }
+                else
+                    callback();
+            }
+        ], (err) => {
+            if (err)
+                this.sendError(req, res, err);
+            else if (newAccount == null)
+                res.json(204);
+            else
+                res.json(newAccount);
+        });
     }
     deleteAccount(req, res) {
         let userId = req.route.params.account_id || req.route.params.user_id;
