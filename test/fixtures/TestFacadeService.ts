@@ -7,6 +7,7 @@ import { ActivitiesOperationsV1 } from '../../src/operations/version1/Activities
 import { PasswordsOperationsV1 } from '../../src/operations/version1/PasswordsOperationsV1';
 import { RolesOperationsV1 } from '../../src/operations/version1/RolesOperationsV1';
 import { EmailSettingsOperationsV1 } from '../../src/operations/version1/EmailSettingsOperationsV1';
+import { EmailOperationsV1 } from '../../src/operations/version1/EmailOperationsV1';
 
 export class TestFacadeService extends PartitionFacadeService {
 
@@ -19,6 +20,7 @@ export class TestFacadeService extends PartitionFacadeService {
         this._dependencyResolver.put('passwords', new Descriptor("pip-facade-users", "operations", "passwords", "*", "1.0"));
         this._dependencyResolver.put('roles', new Descriptor("pip-facade-users", "operations", "roles", "*", "1.0"));
         this._dependencyResolver.put('email-settings', new Descriptor("pip-facade-users", "operations", "email-settings", "*", "1.0"));
+        this._dependencyResolver.put('email', new Descriptor("pip-facade-users", "operations", "email", "*", "1.0"));
     }
 
     // Todo: Add proper authorization for testing
@@ -67,6 +69,11 @@ export class TestFacadeService extends PartitionFacadeService {
             this.registerRoute('post', '/email_settings/verify', emailSettings.verifyEmailOperation());
             this.registerRoute('get', '/email_settings/:user_id', emailSettings.getEmailSettingsOperation());
             this.registerRoute('put', '/email_settings/:user_id', emailSettings.setEmailSettingsOperation());
+        }
+
+        let email = this._dependencyResolver.getOneOptional<EmailOperationsV1>('email');
+        if (email) {
+            this.registerRoute('post', '/email', email.sendMessageOperation());
         }
 
         let roles = this._dependencyResolver.getOneOptional<RolesOperationsV1>('roles');

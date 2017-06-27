@@ -14,4 +14,6 @@ var RolesOperationsV1_1 = require("./RolesOperationsV1");
 exports.RolesOperationsV1 = RolesOperationsV1_1.RolesOperationsV1;
 var EmailSettingsOperationsV1_1 = require("./EmailSettingsOperationsV1");
 exports.EmailSettingsOperationsV1 = EmailSettingsOperationsV1_1.EmailSettingsOperationsV1;
+var EmailOperationsV1_1 = require("./EmailOperationsV1");
+exports.EmailOperationsV1 = EmailOperationsV1_1.EmailOperationsV1;
 //# sourceMappingURL=index.js.map
