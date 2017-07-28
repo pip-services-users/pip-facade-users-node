@@ -81,6 +81,11 @@ class SessionsOperationsV1 extends pip_services_facade_node_1.FacadeOperations {
             this.getCurrentSession(req, res);
         };
     }
+    closeSessionOperation() {
+        return (req, res) => {
+            this.closeSession(req, res);
+        };
+    }
     loadSession(req, res, next) {
         // Is user really cached? If yes, then we shall reinvalidate cache when connections are changed
         // if (req.user) {
@@ -297,6 +302,10 @@ class SessionsOperationsV1 extends pip_services_facade_node_1.FacadeOperations {
         // parse headers first, and if nothing in headers get cookie
         let sessionId = req.headers['x-session-id'] || req.cookies[this._cookie];
         this._sessionsClient.getSessionById(null, sessionId, this.sendResult(req, res));
+    }
+    closeSession(req, res) {
+        let sessionId = req.route.params.session_id || req.param('session_id');
+        this._sessionsClient.closeSession(null, sessionId, this.sendResult(req, res));
     }
 }
 SessionsOperationsV1._defaultConfig1 = pip_services_commons_node_1.ConfigParams.fromTuples('options.cookie_enabled', true, 'options.cookie', 'x-session-id', 'options.max_cookie_age', 365 * 24 * 60 * 60 * 1000);

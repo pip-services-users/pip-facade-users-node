@@ -121,6 +121,12 @@ export class SessionsOperationsV1  extends FacadeOperations {
             this.getCurrentSession(req, res);
         }
     }
+
+    public closeSessionOperation() {
+        return (req, res) => {
+            this.closeSession(req, res);
+        }
+    }
     
     private loadSession(req: any, res: any, next: () => void): void {
         // Is user really cached? If yes, then we shall reinvalidate cache when connections are changed
@@ -397,6 +403,14 @@ export class SessionsOperationsV1  extends FacadeOperations {
         let sessionId = req.headers['x-session-id'] || req.cookies[this._cookie];
 
         this._sessionsClient.getSessionById(
+            null, sessionId, this.sendResult(req, res)
+        );
+    }
+
+    private closeSession(req: any, res: any): void {
+        let sessionId = req.route.params.session_id || req.param('session_id');
+
+        this._sessionsClient.closeSession(
             null, sessionId, this.sendResult(req, res)
         );
     }

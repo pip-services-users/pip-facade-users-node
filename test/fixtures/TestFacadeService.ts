@@ -37,6 +37,7 @@ export class TestFacadeService extends PartitionFacadeService {
             this.registerRoute('post', '/sessions/restore', sessions.restoreSessionOperation());
             this.registerRoute('get', '/sessions/current', sessions.getCurrentSessionOperation());
             this.registerRoute('get', '/sessions/:user_id', sessions.getUserSessionsOperation());
+            this.registerRoute('del', '/sessions/:session_id', sessions.closeSessionOperation());
         }
 
         let accounts = this._dependencyResolver.getOneOptional<AccountsOperationsV1>('accounts');

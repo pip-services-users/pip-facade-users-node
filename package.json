@@ -12,13 +12,13 @@
     "main": "./obj/src/index.js",
     "typings": "./obj/src/index.d.ts",
     "keywords": [
-        "pip.services", 
+        "pip.services",
         "users",
         "rest api",
         "client facade"
     ],
     "noAnalyze": true,
-    "repository" : {
+    "repository": {
         "type": "git",
         "url": "ssh://git@github.com:pip-services-users/pip-facade-users-node.git"
     },
@@ -37,7 +37,6 @@
         "pip-services-container-node": "^2.0.0",
         "pip-services-net-node": "^2.0.0",
         "pip-services-facade-node": "^1.1.0",
-
         "pip-clients-activities-node": "git+ssh://git@github.com:pip-services-users/pip-clients-activities-node.git",
         "pip-clients-accounts-node": "git+ssh://git@github.com:pip-services-users/pip-clients-accounts-node.git",
         "pip-clients-sessions-node": "git+ssh://git@github.com:pip-services-users/pip-clients-sessions-node.git",
@@ -55,7 +54,6 @@
         "chai": "*",
         "matcha": "*",
         "restify": "4.3.0",
-
         "pip-services-activities-node": "git+ssh://git@github.com:pip-services-users/pip-services-activities-node.git",
         "pip-services-accounts-node": "git+ssh://git@github.com:pip-services-users/pip-services-accounts-node.git",
         "pip-services-sessions-node": "git+ssh://git@github.com:pip-services-users/pip-services-sessions-node.git",

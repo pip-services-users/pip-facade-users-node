@@ -186,4 +186,37 @@ suite('SessionOperationsV1', () => {
         );
     });
 
+    test('should close session', (done) => {
+        let session1;
+
+        async.series([
+        // Sign up
+            (callback) => {
+                rest.post('/api/1.0/signup',
+                    USER,
+                    (err, req, res, session) => {
+                        assert.isNull(err);
+
+                        session1 = session;
+
+                        callback();
+                    }
+                );
+            },
+        // Close session
+            (callback) => {
+                rest.del('/api/1.0/sessions/' + session1.id,
+                    (err, req, res, session) => {
+                        assert.isNull(err);
+
+                        assert.isNotNull(session);
+                        assert.equal(session.id, session1.id);
+
+                        callback();
+                    }
+                );
+            }
+        ], done);
+    });
+
 });
