@@ -8,6 +8,8 @@ import { AccountsServiceFactory } from 'pip-services-accounts-node';
 import { AccountsClientFactory } from 'pip-clients-accounts-node';
 import { EmailServiceFactory } from 'pip-services-email-node';
 import { EmailClientFactory } from 'pip-clients-email-node';
+import { SmsServiceFactory } from 'pip-services-sms-node';
+import { SmsClientFactory } from 'pip-clients-sms-node';
 import { PasswordsServiceFactory } from 'pip-services-passwords-node';
 import { PasswordsClientFactory } from 'pip-clients-passwords-node';
 import { SessionsServiceFactory } from 'pip-services-sessions-node';
@@ -33,6 +35,8 @@ export class TestFactory extends DefaultContainerFactory {
         this.add(new AccountsClientFactory);
         this.add(new EmailServiceFactory);
         this.add(new EmailClientFactory);
+        this.add(new SmsServiceFactory);
+        this.add(new SmsClientFactory);
         this.add(new PasswordsServiceFactory);
         this.add(new PasswordsClientFactory);
         this.add(new SessionsServiceFactory);
