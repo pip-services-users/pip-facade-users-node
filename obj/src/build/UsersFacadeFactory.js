@@ -9,6 +9,8 @@ const PasswordsOperationsV1_1 = require("../operations/version1/PasswordsOperati
 const RolesOperationsV1_1 = require("../operations/version1/RolesOperationsV1");
 const EmailSettingsOperationsV1_1 = require("../operations/version1/EmailSettingsOperationsV1");
 const EmailOperationsV1_1 = require("../operations/version1/EmailOperationsV1");
+const SmsSettingsOperationsV1_1 = require("../operations/version1/SmsSettingsOperationsV1");
+const SmsOperationsV1_1 = require("../operations/version1/SmsOperationsV1");
 class UsersFacadeFactory extends pip_services_commons_node_1.Factory {
     constructor() {
         super();
@@ -19,6 +21,8 @@ class UsersFacadeFactory extends pip_services_commons_node_1.Factory {
         this.registerAsType(UsersFacadeFactory.RolesOperationsV1Descriptor, RolesOperationsV1_1.RolesOperationsV1);
         this.registerAsType(UsersFacadeFactory.EmailSettingsOperationsV1Descriptor, EmailSettingsOperationsV1_1.EmailSettingsOperationsV1);
         this.registerAsType(UsersFacadeFactory.EmailOperationsV1Descriptor, EmailOperationsV1_1.EmailOperationsV1);
+        this.registerAsType(UsersFacadeFactory.SmsSettingsOperationsV1Descriptor, SmsSettingsOperationsV1_1.SmsSettingsOperationsV1);
+        this.registerAsType(UsersFacadeFactory.SmsOperationsV1Descriptor, SmsOperationsV1_1.SmsOperationsV1);
     }
 }
 UsersFacadeFactory.Descriptor = new pip_services_commons_node_2.Descriptor("pip-facade-users", "factory", "default", "default", "1.0");
@@ -29,5 +33,7 @@ UsersFacadeFactory.PasswordsOperationsV1Descriptor = new pip_services_commons_no
 UsersFacadeFactory.RolesOperationsV1Descriptor = new pip_services_commons_node_2.Descriptor("pip-facade-users", "operations", "roles", "*", "1.0");
 UsersFacadeFactory.EmailSettingsOperationsV1Descriptor = new pip_services_commons_node_2.Descriptor("pip-facade-users", "operations", "email-settings", "*", "1.0");
 UsersFacadeFactory.EmailOperationsV1Descriptor = new pip_services_commons_node_2.Descriptor("pip-facade-users", "operations", "email", "*", "1.0");
+UsersFacadeFactory.SmsSettingsOperationsV1Descriptor = new pip_services_commons_node_2.Descriptor("pip-facade-users", "operations", "sms-settings", "*", "1.0");
+UsersFacadeFactory.SmsOperationsV1Descriptor = new pip_services_commons_node_2.Descriptor("pip-facade-users", "operations", "sms", "*", "1.0");
 exports.UsersFacadeFactory = UsersFacadeFactory;
 //# sourceMappingURL=UsersFacadeFactory.js.map

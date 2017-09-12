@@ -9,5 +9,7 @@ export declare class UsersFacadeFactory extends Factory {
     static RolesOperationsV1Descriptor: Descriptor;
     static EmailSettingsOperationsV1Descriptor: Descriptor;
     static EmailOperationsV1Descriptor: Descriptor;
+    static SmsSettingsOperationsV1Descriptor: Descriptor;
+    static SmsOperationsV1Descriptor: Descriptor;
     constructor();
 }

@@ -8,6 +8,8 @@ import { PasswordsOperationsV1 } from '../operations/version1/PasswordsOperation
 import { RolesOperationsV1 } from '../operations/version1/RolesOperationsV1';
 import { EmailSettingsOperationsV1 } from '../operations/version1/EmailSettingsOperationsV1';
 import { EmailOperationsV1 } from '../operations/version1/EmailOperationsV1';
+import { SmsSettingsOperationsV1 } from '../operations/version1/SmsSettingsOperationsV1';
+import { SmsOperationsV1 } from '../operations/version1/SmsOperationsV1';
 
 export class UsersFacadeFactory extends Factory {
 	public static Descriptor = new Descriptor("pip-facade-users", "factory", "default", "default", "1.0");
@@ -19,6 +21,8 @@ export class UsersFacadeFactory extends Factory {
 	public static RolesOperationsV1Descriptor = new Descriptor("pip-facade-users", "operations", "roles", "*", "1.0");
 	public static EmailSettingsOperationsV1Descriptor = new Descriptor("pip-facade-users", "operations", "email-settings", "*", "1.0");
 	public static EmailOperationsV1Descriptor = new Descriptor("pip-facade-users", "operations", "email", "*", "1.0");
+	public static SmsSettingsOperationsV1Descriptor = new Descriptor("pip-facade-users", "operations", "sms-settings", "*", "1.0");
+	public static SmsOperationsV1Descriptor = new Descriptor("pip-facade-users", "operations", "sms", "*", "1.0");
 	
 	public constructor() {
 		super();
@@ -30,6 +34,8 @@ export class UsersFacadeFactory extends Factory {
 		this.registerAsType(UsersFacadeFactory.RolesOperationsV1Descriptor, RolesOperationsV1);
 		this.registerAsType(UsersFacadeFactory.EmailSettingsOperationsV1Descriptor, EmailSettingsOperationsV1);
 		this.registerAsType(UsersFacadeFactory.EmailOperationsV1Descriptor, EmailOperationsV1);
+		this.registerAsType(UsersFacadeFactory.SmsSettingsOperationsV1Descriptor, SmsSettingsOperationsV1);
+		this.registerAsType(UsersFacadeFactory.SmsOperationsV1Descriptor, SmsOperationsV1);
 	}
 	
 }
