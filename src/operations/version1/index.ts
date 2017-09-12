@@ -6,3 +6,5 @@ export { PasswordsOperationsV1 } from './PasswordsOperationsV1';
 export { RolesOperationsV1 } from './RolesOperationsV1';
 export { EmailSettingsOperationsV1 } from './EmailSettingsOperationsV1';
 export { EmailOperationsV1 } from './EmailOperationsV1';
+export { SmsSettingsOperationsV1 } from './SmsSettingsOperationsV1';
+export { SmsOperationsV1 } from './SmsOperationsV1';

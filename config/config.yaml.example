@@ -44,6 +44,18 @@
     magic_code: "magic"
 - descriptor: "pip-services-email:client:direct:default:*"
 
+# Sms components
+- descriptor: "pip-services-sms:persistence:mongodb:default:*"
+  connection:
+    discovery_key: mongodb
+- descriptor: "pip-services-sms:controller:default:default:*"
+  options:
+    magic_code: "magic"
+  credential:
+    access_id: ''
+    access_key: ''
+- descriptor: "pip-services-sms:client:direct:default:*"
+
 # Passwords components
 - descriptor: "pip-services-passwords:persistence:mongodb:default:*"
   connection:
@@ -90,3 +102,4 @@
 - descriptor: "pip-facade-users:operations:accounts:default:1.0"
 - descriptor: "pip-facade-users:operations:activities:default:1.0"
 - descriptor: "pip-facade-users:operations:email-settings:default:1.0"
+- descriptor: "pip-facade-users:operations:sms-settings:default:1.0"
