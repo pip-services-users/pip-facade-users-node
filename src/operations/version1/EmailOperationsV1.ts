@@ -9,7 +9,7 @@ import { NotFoundException } from 'pip-services-commons-node';
 
 import { IAccountsClientV1 } from 'pip-clients-accounts-node';
 import { AccountV1 } from 'pip-clients-accounts-node';
-import { RecipientV1 } from 'pip-clients-email-node';
+import { EmailRecipientV1 } from 'pip-clients-email-node';
 import { IEmailClientV1 } from 'pip-clients-email-node';
 
 import { FacadeOperations } from 'pip-services-facade-node';
@@ -47,7 +47,7 @@ export class EmailOperationsV1  extends FacadeOperations {
         let message = req.body || {};
 
         if (recipientId != null) {
-            let recipient = new RecipientV1(recipientId, recipientName, recipientEmail, language);
+            let recipient = new EmailRecipientV1(recipientId, recipientName, recipientEmail, language);
             this._emailClient.sendMessageToRecipient(
                 null, recipient, null, message, parameters, this.sendEmptyResult(req, res)
             );

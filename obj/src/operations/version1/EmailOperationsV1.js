@@ -30,7 +30,7 @@ class EmailOperationsV1 extends pip_services_facade_node_1.FacadeOperations {
         let parameters = new pip_services_commons_node_1.ConfigParams(this.getFilterParams(req));
         let message = req.body || {};
         if (recipientId != null) {
-            let recipient = new pip_clients_email_node_1.RecipientV1(recipientId, recipientName, recipientEmail, language);
+            let recipient = new pip_clients_email_node_1.EmailRecipientV1(recipientId, recipientName, recipientEmail, language);
             this._emailClient.sendMessageToRecipient(null, recipient, null, message, parameters, this.sendEmptyResult(req, res));
         }
         else {
