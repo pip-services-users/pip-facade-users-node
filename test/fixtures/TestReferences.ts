@@ -53,12 +53,12 @@ export class TestReferences extends ManagedReferences {
         this.append(new Descriptor('pip-services-roles', 'persistence', 'memory', 'default', '*'));
         this.append(new Descriptor('pip-services-roles', 'controller', 'default', 'default', '*'));
         this.append(new Descriptor('pip-services-roles', 'client', 'direct', 'default', '*'));
-        this.append(new Descriptor('pip-services-email', 'persistence', 'memory', 'default', '*'));
-        this.append(new Descriptor('pip-services-email', 'controller', 'default', 'default', '*'));
-        this.append(new Descriptor('pip-services-email', 'client', 'direct', 'default', '*'));
-        this.append(new Descriptor('pip-services-sms', 'persistence', 'memory', 'default', '*'));
-        this.append(new Descriptor('pip-services-sms', 'controller', 'default', 'default', '*'));
-        this.append(new Descriptor('pip-services-sms', 'client', 'direct', 'default', '*'));
+        this.append(new Descriptor('pip-services-emailsettings', 'persistence', 'memory', 'default', '*'));
+        this.append(new Descriptor('pip-services-emailsettings', 'controller', 'default', 'default', '*'));
+        this.append(new Descriptor('pip-services-emailsettings', 'client', 'direct', 'default', '*'));
+        this.append(new Descriptor('pip-services-smssettings', 'persistence', 'memory', 'default', '*'));
+        this.append(new Descriptor('pip-services-smssettings', 'controller', 'default', 'default', '*'));
+        this.append(new Descriptor('pip-services-smssettings', 'client', 'direct', 'default', '*'));
     }
 
     private appendFacade(): void {

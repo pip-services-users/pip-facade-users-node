@@ -16,8 +16,10 @@ import { UserPasswordInfoV1 } from 'pip-clients-passwords-node';
 import { IRolesClientV1 } from 'pip-clients-roles-node';
 import { ISessionsClientV1 } from 'pip-clients-sessions-node';
 import { SessionV1 } from 'pip-clients-sessions-node';
-import { IEmailClientV1 } from 'pip-clients-email-node';
-import { EmailSettingsV1 } from 'pip-clients-email-node';
+import { IEmailSettingsClientV1 } from 'pip-clients-emailsettings-node';
+import { EmailSettingsV1 } from 'pip-clients-emailsettings-node';
+import { ISmsSettingsClientV1 } from 'pip-clients-smssettings-node';
+import { SmsSettingsV1 } from 'pip-clients-smssettings-node';
 
 import { FacadeOperations } from 'pip-services-facade-node';
 import { SessionUserV1 } from './SessionUserV1';
@@ -37,15 +39,17 @@ export class SessionsOperationsV1  extends FacadeOperations {
     private _sessionsClient: ISessionsClientV1;
     private _passwordsClient: IPasswordsClientV1;
     private _rolesClient: IRolesClientV1;
-    private _emailClient: IEmailClientV1;
-
+    private _emailSettingsClient: IEmailSettingsClientV1;
+    private _smsSettingsClient: ISmsSettingsClientV1;
+    
     public constructor() {
         super();
 
         this._dependencyResolver.put('accounts', new Descriptor('pip-services-accounts', 'client', '*', '*', '1.0'));
         this._dependencyResolver.put('passwords', new Descriptor('pip-services-passwords', 'client', '*', '*', '1.0'));
         this._dependencyResolver.put('roles', new Descriptor('pip-services-roles', 'client', '*', '*', '1.0'));
-        this._dependencyResolver.put('email', new Descriptor('pip-services-email', 'client', '*', '*', '1.0'));
+        this._dependencyResolver.put('emailsettings', new Descriptor('pip-services-emailsettings', 'client', '*', '*', '1.0'));
+        this._dependencyResolver.put('smssettings', new Descriptor('pip-services-smssettings', 'client', '*', '*', '1.0'));
         this._dependencyResolver.put('sessions', new Descriptor('pip-services-sessions', 'client', '*', '*', '1.0'));
     }
 
@@ -65,7 +69,8 @@ export class SessionsOperationsV1  extends FacadeOperations {
         this._accountsClient = this._dependencyResolver.getOneRequired<IAccountsClientV1>('accounts');
         this._passwordsClient = this._dependencyResolver.getOneRequired<IPasswordsClientV1>('passwords');
         this._rolesClient = this._dependencyResolver.getOneOptional<IRolesClientV1>('roles');
-        this._emailClient = this._dependencyResolver.getOneOptional<IEmailClientV1>('email');
+        this._emailSettingsClient = this._dependencyResolver.getOneOptional<IEmailSettingsClientV1>('emailsettings');
+        this._smsSettingsClient = this._dependencyResolver.getOneOptional<ISmsSettingsClientV1>('smssettings');
     }
 
     public loadSessionOperation() {
@@ -257,13 +262,32 @@ export class SessionsOperationsV1  extends FacadeOperations {
             // Create email settings for the account
             (callback) => {
                 let email = signupData.email;
-                let newEmailSettings = new EmailSettingsV1(
-                    account.id, account.name, email, account.language
-                );
+                let newEmailSettings = <EmailSettingsV1>{
+                    id: account.id,
+                    name: account.name,
+                    email: email,
+                    language: account.language
+                };
 
-                if (this._emailClient != null) {
-                    this._emailClient.setSettings(
+                if (this._emailSettingsClient != null) {
+                    this._emailSettingsClient.setSettings(
                         null, newEmailSettings, callback
+                    );
+                } else callback();
+            },
+            // Create sms settings for the account
+            (callback) => {
+                let phone = signupData.phone;
+                let newSmsSettings = <SmsSettingsV1>{
+                    id: account.id,
+                    name: account.name,
+                    phone: phone,
+                    language: account.language
+                };
+
+                if (phone != null && this._emailSettingsClient != null) {
+                    this._smsSettingsClient.setSettings(
+                        null, newSmsSettings, callback
                     );
                 } else callback();
             }

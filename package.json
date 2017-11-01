@@ -42,8 +42,8 @@
         "pip-clients-sessions-node": "git+ssh://git@github.com:pip-services-users/pip-clients-sessions-node.git",
         "pip-clients-passwords-node": "git+ssh://git@github.com:pip-services-users/pip-clients-passwords-node.git",
         "pip-clients-roles-node": "git+ssh://git@github.com:pip-services-users/pip-clients-roles-node.git",
-        "pip-clients-email-node": "git+ssh://git@github.com:pip-services-users/pip-clients-email-node.git",
-        "pip-clients-sms-node": "git+ssh://git@github.com:pip-services-users/pip-clients-sms-node.git"
+        "pip-clients-emailsettings-node": "git+ssh://git@github.com:pip-services-users/pip-clients-emailsettings-node.git",
+        "pip-clients-smssettings-node": "git+ssh://git@github.com:pip-services-users/pip-clients-smssettings-node.git"
     },
     "devDependencies": {
         "@types/node": "*",
@@ -60,7 +60,7 @@
         "pip-services-sessions-node": "git+ssh://git@github.com:pip-services-users/pip-services-sessions-node.git",
         "pip-services-passwords-node": "git+ssh://git@github.com:pip-services-users/pip-services-passwords-node.git",
         "pip-services-roles-node": "git+ssh://git@github.com:pip-services-users/pip-services-roles-node.git",
-        "pip-services-email-node": "git+ssh://git@github.com:pip-services-users/pip-services-email-node.git",
-        "pip-services-sms-node": "git+ssh://git@github.com:pip-services-users/pip-services-sms-node.git"
+        "pip-services-emailsettings-node": "git+ssh://git@github.com:pip-services-users/pip-services-emailsettings-node.git",
+        "pip-services-smssettings-node": "git+ssh://git@github.com:pip-services-users/pip-services-smssettings-node.git"
     }
 }

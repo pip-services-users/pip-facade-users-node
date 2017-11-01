@@ -4,7 +4,7 @@ let assert = require('chai').assert;
 
 import { ConfigParams } from 'pip-services-commons-node';
 import { Descriptor } from 'pip-services-commons-node';
-import { SmsController } from 'pip-services-sms-node';
+import { SmsSettingsController } from 'pip-services-smssettings-node';
 
 import { TestReferences } from '../../fixtures/TestReferences';
 import { TestUsers } from '../../fixtures/TestUsers';
@@ -14,14 +14,14 @@ import { SmsSettingsOperationsV1 } from '../../../src/operations/version1/SmsSet
 suite('SmsSettingsOperationsV1', () => {
     let references: TestReferences;
     let rest: TestRestClient;
-    let smsSettingsController: SmsController;
+    let smsSettingsController: SmsSettingsController;
 
     setup((done) => {
         rest = new TestRestClient();
         references = new TestReferences();
         references.put(new Descriptor('pip-facade-users', 'operations', 'sms-settings', 'default', '1.0'), new SmsSettingsOperationsV1())
-        smsSettingsController = references.getOneRequired<SmsController>(
-            new Descriptor('pip-services-sms', 'controller', '*', '*', '1.0')
+        smsSettingsController = references.getOneRequired<SmsSettingsController>(
+            new Descriptor('pip-services-smssettings', 'controller', '*', '*', '1.0')
         );
         smsSettingsController.configure(ConfigParams.fromTuples(
             'options.magic_code', 'magic'

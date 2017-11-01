@@ -10,7 +10,8 @@ export declare class SessionsOperationsV1 extends FacadeOperations {
     private _sessionsClient;
     private _passwordsClient;
     private _rolesClient;
-    private _emailClient;
+    private _emailSettingsClient;
+    private _smsSettingsClient;
     constructor();
     configure(config: ConfigParams): void;
     setReferences(references: IReferences): void;

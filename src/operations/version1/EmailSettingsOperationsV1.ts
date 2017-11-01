@@ -9,26 +9,26 @@ import { NotFoundException } from 'pip-services-commons-node';
 
 import { IAccountsClientV1 } from 'pip-clients-accounts-node';
 import { AccountV1 } from 'pip-clients-accounts-node';
-import { IEmailClientV1 } from 'pip-clients-email-node';
+import { IEmailSettingsClientV1 } from 'pip-clients-emailsettings-node';
 
 import { FacadeOperations } from 'pip-services-facade-node';
 
 export class EmailSettingsOperationsV1  extends FacadeOperations {
     private _accountsClient: IAccountsClientV1;
-    private _emailClient: IEmailClientV1;
+    private _emailClient: IEmailSettingsClientV1;
 
     public constructor() {
         super();
 
         this._dependencyResolver.put('accounts', new Descriptor('pip-services-accounts', 'client', '*', '*', '1.0'));
-        this._dependencyResolver.put('email', new Descriptor('pip-services-email', 'client', '*', '*', '1.0'));
+        this._dependencyResolver.put('emailsettings', new Descriptor('pip-services-emailsettings', 'client', '*', '*', '1.0'));
     }
 
     public setReferences(references: IReferences): void {
         super.setReferences(references);
 
         this._accountsClient = this._dependencyResolver.getOneRequired<IAccountsClientV1>('accounts');
-        this._emailClient = this._dependencyResolver.getOneRequired<IEmailClientV1>('email');
+        this._emailClient = this._dependencyResolver.getOneRequired<IEmailSettingsClientV1>('emailsettings');
     }
 
     public getEmailSettingsOperation() {

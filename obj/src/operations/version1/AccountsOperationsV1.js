@@ -3,21 +3,22 @@ Object.defineProperty(exports, "__esModule", { value: true });
 let _ = require('lodash');
 let async = require('async');
 const pip_services_commons_node_1 = require("pip-services-commons-node");
-const pip_clients_email_node_1 = require("pip-clients-email-node");
 const pip_services_facade_node_1 = require("pip-services-facade-node");
 class AccountsOperationsV1 extends pip_services_facade_node_1.FacadeOperations {
     constructor() {
         super();
         this._dependencyResolver.put('accounts', new pip_services_commons_node_1.Descriptor('pip-services-accounts', 'client', '*', '*', '1.0'));
         this._dependencyResolver.put('passwords', new pip_services_commons_node_1.Descriptor('pip-services-passwords', 'client', '*', '*', '1.0'));
-        this._dependencyResolver.put('email', new pip_services_commons_node_1.Descriptor('pip-services-email', 'client', '*', '*', '1.0'));
+        this._dependencyResolver.put('emailsettings', new pip_services_commons_node_1.Descriptor('pip-services-emailsettings', 'client', '*', '*', '1.0'));
+        this._dependencyResolver.put('smssettings', new pip_services_commons_node_1.Descriptor('pip-services-smssettings', 'client', '*', '*', '1.0'));
         this._dependencyResolver.put('sessions', new pip_services_commons_node_1.Descriptor('pip-services-sessions', 'client', '*', '*', '1.0'));
     }
     setReferences(references) {
         super.setReferences(references);
         this._accountsClient = this._dependencyResolver.getOneRequired('accounts');
         this._passwordsClient = this._dependencyResolver.getOneRequired('passwords');
-        this._emailClient = this._dependencyResolver.getOneOptional('email');
+        this._emailSettingsClient = this._dependencyResolver.getOneOptional('emailsettings');
+        this._smsSettingsClient = this._dependencyResolver.getOneOptional('smssettings');
         this._sessionsClient = this._dependencyResolver.getOneRequired('sessions');
     }
     getAccountsOperation() {
@@ -98,9 +99,29 @@ class AccountsOperationsV1 extends pip_services_facade_node_1.FacadeOperations {
             // Create email settings for the account
             (callback) => {
                 let email = data.email;
-                let newEmailSettings = new pip_clients_email_node_1.EmailSettingsV1(account.id, account.name, email, account.language);
-                if (this._emailClient != null) {
-                    this._emailClient.setSettings(null, newEmailSettings, callback);
+                let newEmailSettings = {
+                    id: account.id,
+                    name: account.name,
+                    email: email,
+                    language: account.language
+                };
+                if (this._emailSettingsClient != null) {
+                    this._emailSettingsClient.setSettings(null, newEmailSettings, callback);
+                }
+                else
+                    callback();
+            },
+            // Create sms settings for the account
+            (callback) => {
+                let phone = data.phone;
+                let newSmsSettings = {
+                    id: account.id,
+                    name: account.name,
+                    phone: phone,
+                    language: account.language
+                };
+                if (phone != null && this._smsSettingsClient != null) {
+                    this._smsSettingsClient.setSettings(null, newSmsSettings, callback);
                 }
                 else
                     callback();

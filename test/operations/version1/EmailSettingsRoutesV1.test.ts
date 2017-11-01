@@ -4,7 +4,7 @@ let assert = require('chai').assert;
 
 import { ConfigParams } from 'pip-services-commons-node';
 import { Descriptor } from 'pip-services-commons-node';
-import { EmailController } from 'pip-services-email-node';
+import { EmailSettingsController } from 'pip-services-emailsettings-node';
 
 import { TestReferences } from '../../fixtures/TestReferences';
 import { TestUsers } from '../../fixtures/TestUsers';
@@ -14,14 +14,14 @@ import { EmailSettingsOperationsV1 } from '../../../src/operations/version1/Emai
 suite('EmailSettingsOperationsV1', () => {
     let references: TestReferences;
     let rest: TestRestClient;
-    let emailSettingsController: EmailController;
+    let emailSettingsController: EmailSettingsController;
 
     setup((done) => {
         rest = new TestRestClient();
         references = new TestReferences();
         references.put(new Descriptor('pip-facade-users', 'operations', 'email-settings', 'default', '1.0'), new EmailSettingsOperationsV1())
-        emailSettingsController = references.getOneRequired<EmailController>(
-            new Descriptor('pip-services-email', 'controller', '*', '*', '1.0')
+        emailSettingsController = references.getOneRequired<EmailSettingsController>(
+            new Descriptor('pip-services-emailsettings', 'controller', '*', '*', '1.0')
         );
         emailSettingsController.configure(ConfigParams.fromTuples(
             'options.magic_code', 'magic'

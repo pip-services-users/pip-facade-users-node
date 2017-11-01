@@ -9,12 +9,12 @@ class EmailSettingsOperationsV1 extends pip_services_facade_node_1.FacadeOperati
     constructor() {
         super();
         this._dependencyResolver.put('accounts', new pip_services_commons_node_1.Descriptor('pip-services-accounts', 'client', '*', '*', '1.0'));
-        this._dependencyResolver.put('email', new pip_services_commons_node_1.Descriptor('pip-services-email', 'client', '*', '*', '1.0'));
+        this._dependencyResolver.put('emailsettings', new pip_services_commons_node_1.Descriptor('pip-services-emailsettings', 'client', '*', '*', '1.0'));
     }
     setReferences(references) {
         super.setReferences(references);
         this._accountsClient = this._dependencyResolver.getOneRequired('accounts');
-        this._emailClient = this._dependencyResolver.getOneRequired('email');
+        this._emailClient = this._dependencyResolver.getOneRequired('emailsettings');
     }
     getEmailSettingsOperation() {
         return (req, res) => {

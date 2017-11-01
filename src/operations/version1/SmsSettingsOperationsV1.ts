@@ -9,26 +9,26 @@ import { NotFoundException } from 'pip-services-commons-node';
 
 import { IAccountsClientV1 } from 'pip-clients-accounts-node';
 import { AccountV1 } from 'pip-clients-accounts-node';
-import { ISmsClientV1 } from 'pip-clients-sms-node';
+import { ISmsSettingsClientV1 } from 'pip-clients-smssettings-node';
 
 import { FacadeOperations } from 'pip-services-facade-node';
 
 export class SmsSettingsOperationsV1  extends FacadeOperations {
     private _accountsClient: IAccountsClientV1;
-    private _smsClient: ISmsClientV1;
+    private _smsClient: ISmsSettingsClientV1;
 
     public constructor() {
         super();
 
         this._dependencyResolver.put('accounts', new Descriptor('pip-services-accounts', 'client', '*', '*', '1.0'));
-        this._dependencyResolver.put('sms', new Descriptor('pip-services-sms', 'client', '*', '*', '1.0'));
+        this._dependencyResolver.put('smssettings', new Descriptor('pip-services-smssettings', 'client', '*', '*', '1.0'));
     }
 
     public setReferences(references: IReferences): void {
         super.setReferences(references);
 
         this._accountsClient = this._dependencyResolver.getOneRequired<IAccountsClientV1>('accounts');
-        this._smsClient = this._dependencyResolver.getOneRequired<ISmsClientV1>('sms');
+        this._smsClient = this._dependencyResolver.getOneRequired<ISmsSettingsClientV1>('smssettings');
     }
 
     public getSmsSettingsOperation() {

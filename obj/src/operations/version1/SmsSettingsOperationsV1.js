@@ -9,12 +9,12 @@ class SmsSettingsOperationsV1 extends pip_services_facade_node_1.FacadeOperation
     constructor() {
         super();
         this._dependencyResolver.put('accounts', new pip_services_commons_node_1.Descriptor('pip-services-accounts', 'client', '*', '*', '1.0'));
-        this._dependencyResolver.put('sms', new pip_services_commons_node_1.Descriptor('pip-services-sms', 'client', '*', '*', '1.0'));
+        this._dependencyResolver.put('smssettings', new pip_services_commons_node_1.Descriptor('pip-services-smssettings', 'client', '*', '*', '1.0'));
     }
     setReferences(references) {
         super.setReferences(references);
         this._accountsClient = this._dependencyResolver.getOneRequired('accounts');
-        this._smsClient = this._dependencyResolver.getOneRequired('sms');
+        this._smsClient = this._dependencyResolver.getOneRequired('smssettings');
     }
     getSmsSettingsOperation() {
         return (req, res) => {
