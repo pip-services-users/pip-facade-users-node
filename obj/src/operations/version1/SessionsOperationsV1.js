@@ -98,7 +98,7 @@ class SessionsOperationsV1 extends pip_services_facade_node_1.FacadeOperations {
         if (sessionId) {
             this._sessionsClient.getSessionById('facade', sessionId, (err, session) => {
                 if (session == null && err == null) {
-                    err = new pip_services_commons_node_4.UnauthorizedException('facade', 'SESSION_NOT_FOUND', 'Session invalid or already expired.').withDetails('session_id', sessionId);
+                    err = new pip_services_commons_node_4.UnauthorizedException('facade', 'SESSION_NOT_FOUND', 'Session invalid or already expired.').withDetails('session_id', sessionId).withStatus(440);
                 }
                 if (err == null) {
                     // Associate session user with the request

@@ -150,7 +150,7 @@ export class SessionsOperationsV1  extends FacadeOperations {
                         'facade', 
                         'SESSION_NOT_FOUND', 
                         'Session invalid or already expired.'
-                    ).withDetails('session_id', sessionId);
+                    ).withDetails('session_id', sessionId).withStatus(440);
                 }
 
                 if (err == null) {
