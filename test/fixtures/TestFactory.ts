@@ -1,4 +1,4 @@
-import { CompositeFactory } from 'pip-services-commons-node';
+import { CompositeFactory } from 'pip-services-components-node';
 import { FacadeFactory } from 'pip-services-facade-node';
 import { DefaultContainerFactory } from 'pip-services-container-node';
 

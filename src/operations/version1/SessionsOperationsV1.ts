@@ -7,7 +7,7 @@ import { Descriptor } from 'pip-services-commons-node';
 import { DependencyResolver } from 'pip-services-commons-node';
 import { BadRequestException } from 'pip-services-commons-node';
 import { UnauthorizedException } from 'pip-services-commons-node';
-import { HttpRequestDetector } from 'pip-services-net-node';
+import { HttpRequestDetector } from 'pip-services-rpc-node';
 
 import { IAccountsClientV1 } from 'pip-clients-accounts-node';
 import { AccountV1 } from 'pip-clients-accounts-node';

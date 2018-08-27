@@ -6,7 +6,7 @@ const pip_services_commons_node_1 = require("pip-services-commons-node");
 const pip_services_commons_node_2 = require("pip-services-commons-node");
 const pip_services_commons_node_3 = require("pip-services-commons-node");
 const pip_services_commons_node_4 = require("pip-services-commons-node");
-const pip_services_net_node_1 = require("pip-services-net-node");
+const pip_services_rpc_node_1 = require("pip-services-rpc-node");
 const pip_services_facade_node_1 = require("pip-services-facade-node");
 class SessionsOperationsV1 extends pip_services_facade_node_1.FacadeOperations {
     constructor() {
@@ -141,9 +141,9 @@ class SessionsOperationsV1 extends pip_services_facade_node_1.FacadeOperations {
                     custom_hdr: account.custom_hdr,
                     custom_dat: account.custom_dat
                 };
-                let address = pip_services_net_node_1.HttpRequestDetector.detectAddress(req);
-                let client = pip_services_net_node_1.HttpRequestDetector.detectBrowser(req);
-                let platform = pip_services_net_node_1.HttpRequestDetector.detectPlatform(req);
+                let address = pip_services_rpc_node_1.HttpRequestDetector.detectAddress(req);
+                let client = pip_services_rpc_node_1.HttpRequestDetector.detectBrowser(req);
+                let platform = pip_services_rpc_node_1.HttpRequestDetector.detectPlatform(req);
                 this._sessionsClient.openSession(null, account.id, account.name, address, client, user, null, (err, data) => {
                     session = data;
                     callback(err);
