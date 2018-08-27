@@ -79,7 +79,7 @@
 ################ REST API Routes ##############
 
 # Main facade service
-- descriptor: "pip-services-facade:service:main:default:*"
+- descriptor: "pip-services:facade-service:default:default:*"
   root_path: ""
   connection:
     protocol: "http"
