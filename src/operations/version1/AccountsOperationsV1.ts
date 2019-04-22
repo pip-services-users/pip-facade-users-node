@@ -1,11 +1,11 @@
 let _ = require('lodash');
 let async = require('async');
 
-import { ConfigParams } from 'pip-services-commons-node';
-import { IReferences } from 'pip-services-commons-node';
-import { Descriptor } from 'pip-services-commons-node'; 
-import { DependencyResolver } from 'pip-services-commons-node';
-import { IdGenerator } from 'pip-services-commons-node';
+import { ConfigParams } from 'pip-services3-commons-node';
+import { IReferences } from 'pip-services3-commons-node';
+import { Descriptor } from 'pip-services3-commons-node'; 
+import { DependencyResolver } from 'pip-services3-commons-node';
+import { IdGenerator } from 'pip-services3-commons-node';
 
 import { IAccountsClientV1 } from 'pip-clients-accounts-node';
 import { AccountV1 } from 'pip-clients-accounts-node';
@@ -16,7 +16,7 @@ import { ISmsSettingsClientV1 } from 'pip-clients-smssettings-node';
 import { SmsSettingsV1 } from 'pip-clients-smssettings-node';
 import { ISessionsClientV1 } from 'pip-clients-sessions-node';
 
-import { FacadeOperations } from 'pip-services-facade-node';
+import { FacadeOperations } from 'pip-services3-facade-node';
 
 export class AccountsOperationsV1  extends FacadeOperations {
     private _accountsClient: IAccountsClientV1;

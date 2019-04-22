@@ -1,5 +1,5 @@
-import { Factory } from 'pip-services-components-node';
-import { Descriptor } from 'pip-services-commons-node';
+import { Factory } from 'pip-services3-components-node';
+import { Descriptor } from 'pip-services3-commons-node';
 
 import { SessionsOperationsV1 } from '../operations/version1/SessionsOperationsV1';
 import { AccountsOperationsV1 } from '../operations/version1/AccountsOperationsV1';

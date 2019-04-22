@@ -1,5 +1,5 @@
-import { IReferences } from 'pip-services-commons-node';
-import { FacadeOperations } from 'pip-services-facade-node';
+import { IReferences } from 'pip-services3-commons-node';
+import { FacadeOperations } from 'pip-services3-facade-node';
 export declare class EmailSettingsOperationsV1 extends FacadeOperations {
     private _accountsClient;
     private _emailClient;
@@ -9,8 +9,8 @@ export declare class EmailSettingsOperationsV1 extends FacadeOperations {
     setEmailSettingsOperation(): (req: any, res: any) => void;
     resendVerificationOperation(): (req: any, res: any) => void;
     verifyEmailOperation(): (req: any, res: any) => void;
-    private getEmailSettings(req, res);
-    private setEmailSettings(req, res);
-    private resendVerification(req, res);
-    private verifyEmail(req, res);
+    private getEmailSettings;
+    private setEmailSettings;
+    private resendVerification;
+    private verifyEmail;
 }

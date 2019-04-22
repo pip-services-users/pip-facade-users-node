@@ -1,5 +1,5 @@
-import { IReferences } from 'pip-services-commons-node';
-import { FacadeOperations } from 'pip-services-facade-node';
+import { IReferences } from 'pip-services3-commons-node';
+import { FacadeOperations } from 'pip-services3-facade-node';
 export declare class AccountsOperationsV1 extends FacadeOperations {
     private _accountsClient;
     private _passwordsClient;
@@ -14,10 +14,10 @@ export declare class AccountsOperationsV1 extends FacadeOperations {
     createAccountOperation(): (req: any, res: any) => void;
     updateAccountOperation(): (req: any, res: any) => void;
     deleteAccountOperation(): (req: any, res: any) => void;
-    private getAccounts(req, res);
-    private getCurrentAccount(req, res);
-    private getAccount(req, res);
-    private createAccount(req, res);
-    private updateAccount(req, res);
-    private deleteAccount(req, res);
+    private getAccounts;
+    private getCurrentAccount;
+    private getAccount;
+    private createAccount;
+    private updateAccount;
+    private deleteAccount;
 }

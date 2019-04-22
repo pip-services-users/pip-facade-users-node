@@ -1,12 +1,12 @@
-import { ConfigParams } from 'pip-services-commons-node';
-import { Descriptor } from 'pip-services-commons-node';
-import { References } from 'pip-services-commons-node';
-import { Opener } from 'pip-services-commons-node';
-import { Closer } from 'pip-services-commons-node';
-import { Referencer } from 'pip-services-commons-node';
-import { ManagedReferences } from 'pip-services-container-node';
+import { ConfigParams } from 'pip-services3-commons-node';
+import { Descriptor } from 'pip-services3-commons-node';
+import { References } from 'pip-services3-commons-node';
+import { Opener } from 'pip-services3-commons-node';
+import { Closer } from 'pip-services3-commons-node';
+import { Referencer } from 'pip-services3-commons-node';
+import { ManagedReferences } from 'pip-services3-container-node';
 
-import { MainFacadeService } from 'pip-services-facade-node';
+import { MainFacadeService } from 'pip-services3-facade-node';
 import { IAccountsPersistence } from 'pip-services-accounts-node';
 import { AccountV1 } from 'pip-services-accounts-node';
 import { ISessionsPersistence } from 'pip-services-sessions-node';

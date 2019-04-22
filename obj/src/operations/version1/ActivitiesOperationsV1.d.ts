@@ -1,5 +1,5 @@
-import { IReferences } from 'pip-services-commons-node';
-import { FacadeOperations } from 'pip-services-facade-node';
+import { IReferences } from 'pip-services3-commons-node';
+import { FacadeOperations } from 'pip-services3-facade-node';
 export declare class ActivitiesOperationsV1 extends FacadeOperations {
     private _activitiesClient;
     constructor();
@@ -7,7 +7,7 @@ export declare class ActivitiesOperationsV1 extends FacadeOperations {
     getActivitiesOperation(): (req: any, res: any) => void;
     getPartyActivitiesOperation(): (req: any, res: any) => void;
     logPartyActivityOperation(): (req: any, res: any) => void;
-    private getActivities(req, res);
-    private getPartyActivities(req, res);
-    private logPartyActivity(req, res);
+    private getActivities;
+    private getPartyActivities;
+    private logPartyActivity;
 }

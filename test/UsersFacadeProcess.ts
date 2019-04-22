@@ -1,5 +1,5 @@
-import { IReferences } from 'pip-services-commons-node';
-import { ProcessContainer } from 'pip-services-container-node';
+import { IReferences } from 'pip-services3-commons-node';
+import { ProcessContainer } from 'pip-services3-container-node';
 
 import { TestFactory } from './fixtures/TestFactory';
 

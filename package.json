@@ -33,11 +33,11 @@
         "benchmark": "matcha -R clean -I tdd ./benchmark/run.js"
     },
     "dependencies": {
-        "pip-services-commons-node": "^3.0.0",
-        "pip-services-components-node": "^3.0.0",
-        "pip-services-container-node": "^3.0.0",
-        "pip-services-rpc-node": "^3.0.0",
-        "pip-services-facade-node": "^3.0.0",
+        "pip-services3-commons-node": "^3.0.0",
+        "pip-services3-components-node": "^3.0.0",
+        "pip-services3-container-node": "^3.0.0",
+        "pip-services3-rpc-node": "^3.0.0",
+        "pip-services3-facade-node": "^3.0.0",
         "pip-clients-activities-node": "git+ssh://git@github.com:pip-services-users/pip-clients-activities-node.git",
         "pip-clients-accounts-node": "git+ssh://git@github.com:pip-services-users/pip-clients-accounts-node.git",
         "pip-clients-sessions-node": "git+ssh://git@github.com:pip-services-users/pip-clients-sessions-node.git",

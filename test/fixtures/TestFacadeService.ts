@@ -1,5 +1,5 @@
-import { Descriptor } from 'pip-services-commons-node';
-import { PartitionFacadeService } from 'pip-services-facade-node';
+import { Descriptor } from 'pip-services3-commons-node';
+import { PartitionFacadeService } from 'pip-services3-facade-node';
 
 import { SessionsOperationsV1 } from '../../src/operations/version1/SessionsOperationsV1';
 import { AccountsOperationsV1 } from '../../src/operations/version1/AccountsOperationsV1';

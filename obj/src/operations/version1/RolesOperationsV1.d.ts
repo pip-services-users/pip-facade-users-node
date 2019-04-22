@@ -1,5 +1,5 @@
-import { IReferences } from 'pip-services-commons-node';
-import { FacadeOperations } from 'pip-services-facade-node';
+import { IReferences } from 'pip-services3-commons-node';
+import { FacadeOperations } from 'pip-services3-facade-node';
 export declare class RolesOperationsV1 extends FacadeOperations {
     private _rolesClient;
     constructor();
@@ -7,7 +7,7 @@ export declare class RolesOperationsV1 extends FacadeOperations {
     getUserRolesOperation(): (req: any, res: any) => void;
     grantUserRolesOperation(): (req: any, res: any) => void;
     revokeUserRolesOperation(): (req: any, res: any) => void;
-    private getUserRoles(req, res);
-    private grantUserRoles(req, res);
-    private revokeUserRoles(req, res);
+    private getUserRoles;
+    private grantUserRoles;
+    private revokeUserRoles;
 }

@@ -2,14 +2,14 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 let _ = require('lodash');
 let async = require('async');
-const pip_services_commons_node_1 = require("pip-services-commons-node");
-const pip_services_commons_node_2 = require("pip-services-commons-node");
-const pip_services_facade_node_1 = require("pip-services-facade-node");
-class EmailSettingsOperationsV1 extends pip_services_facade_node_1.FacadeOperations {
+const pip_services3_commons_node_1 = require("pip-services3-commons-node");
+const pip_services3_commons_node_2 = require("pip-services3-commons-node");
+const pip_services3_facade_node_1 = require("pip-services3-facade-node");
+class EmailSettingsOperationsV1 extends pip_services3_facade_node_1.FacadeOperations {
     constructor() {
         super();
-        this._dependencyResolver.put('accounts', new pip_services_commons_node_1.Descriptor('pip-services-accounts', 'client', '*', '*', '1.0'));
-        this._dependencyResolver.put('emailsettings', new pip_services_commons_node_1.Descriptor('pip-services-emailsettings', 'client', '*', '*', '1.0'));
+        this._dependencyResolver.put('accounts', new pip_services3_commons_node_1.Descriptor('pip-services-accounts', 'client', '*', '*', '1.0'));
+        this._dependencyResolver.put('emailsettings', new pip_services3_commons_node_1.Descriptor('pip-services-emailsettings', 'client', '*', '*', '1.0'));
     }
     setReferences(references) {
         super.setReferences(references);
@@ -53,7 +53,7 @@ class EmailSettingsOperationsV1 extends pip_services_facade_node_1.FacadeOperati
             (callback) => {
                 this._accountsClient.getAccountByIdOrLogin(null, login, (err, data) => {
                     if (err == null && data == null) {
-                        err = new pip_services_commons_node_2.NotFoundException(null, 'LOGIN_NOT_FOUND', 'Login ' + login + ' was not found').withDetails('login', login);
+                        err = new pip_services3_commons_node_2.NotFoundException(null, 'LOGIN_NOT_FOUND', 'Login ' + login + ' was not found').withDetails('login', login);
                     }
                     account = data;
                     callback(err);
@@ -77,7 +77,7 @@ class EmailSettingsOperationsV1 extends pip_services_facade_node_1.FacadeOperati
             (callback) => {
                 this._accountsClient.getAccountByIdOrLogin(null, login, (err, data) => {
                     if (err == null && data == null) {
-                        err = new pip_services_commons_node_2.NotFoundException(null, 'LOGIN_NOT_FOUND', 'Login ' + login + ' was not found').withDetails('login', login);
+                        err = new pip_services3_commons_node_2.NotFoundException(null, 'LOGIN_NOT_FOUND', 'Login ' + login + ' was not found').withDetails('login', login);
                     }
                     account = data;
                     callback(err);

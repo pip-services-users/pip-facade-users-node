@@ -2,7 +2,7 @@ let _ = require('lodash');
 let async = require('async');
 let assert = require('chai').assert;
 
-import { Descriptor } from 'pip-services-commons-node';
+import { Descriptor } from 'pip-services3-commons-node';
 
 import { TestReferences } from '../../fixtures/TestReferences';
 import { TestUsers } from '../../fixtures/TestUsers';

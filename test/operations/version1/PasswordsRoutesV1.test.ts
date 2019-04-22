@@ -2,8 +2,8 @@ let _ = require('lodash');
 let async = require('async');
 let assert = require('chai').assert;
 
-import { ConfigParams } from 'pip-services-commons-node';
-import { Descriptor } from 'pip-services-commons-node';
+import { ConfigParams } from 'pip-services3-commons-node';
+import { Descriptor } from 'pip-services3-commons-node';
 import { PasswordsController } from 'pip-services-passwords-node';
 
 import { TestReferences } from '../../fixtures/TestReferences';

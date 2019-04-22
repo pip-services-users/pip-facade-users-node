@@ -1,6 +1,6 @@
 # Facade Operations for User Management Pip.Services in Node.js
 
-This module contains REST operations for [Client Facade](github.com:pip-services/pip-services-facade-node.git).
+This module contains REST operations for [Client Facade](github.com:pip-services/pip-services3-facade-node.git).
 Using these operations developers are able to create facades and fill them with pre-built REST operations for:
 
 * Signin/signup and session management
@@ -22,7 +22,7 @@ Add dependency to the facade and operations into **package.json** file of your p
     ...
     "dependencies": {
         ....
-        "pip-services-facade-node": "^1.0.*",
+        "pip-services3-facade-node": "^1.0.*",
         "pip-facade-infrastructure-node": "^1.0.*",
         ...
     }
@@ -42,7 +42,7 @@ npm update
 
 Create facade service
 ```typescript
-import { MainFacadeService } from 'pip-services-facade-node'
+import { MainFacadeService } from 'pip-services3-facade-node'
 
 export class MyFacadeServiceV1 extends MainFacadeService {
     ...

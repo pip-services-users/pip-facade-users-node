@@ -1,5 +1,5 @@
-import { IReferences } from 'pip-services-commons-node';
-import { FacadeOperations } from 'pip-services-facade-node';
+import { IReferences } from 'pip-services3-commons-node';
+import { FacadeOperations } from 'pip-services3-facade-node';
 export declare class SmsSettingsOperationsV1 extends FacadeOperations {
     private _accountsClient;
     private _smsClient;
@@ -9,8 +9,8 @@ export declare class SmsSettingsOperationsV1 extends FacadeOperations {
     setSmsSettingsOperation(): (req: any, res: any) => void;
     resendVerificationOperation(): (req: any, res: any) => void;
     verifyPhoneOperation(): (req: any, res: any) => void;
-    private getSmsSettings(req, res);
-    private setSmsSettings(req, res);
-    private resendVerification(req, res);
-    private verifyPhone(req, res);
+    private getSmsSettings;
+    private setSmsSettings;
+    private resendVerification;
+    private verifyPhone;
 }

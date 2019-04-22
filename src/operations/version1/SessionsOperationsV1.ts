@@ -1,13 +1,13 @@
 let _ = require('lodash');
 let async = require('async');
 
-import { ConfigParams } from 'pip-services-commons-node';
-import { IReferences } from 'pip-services-commons-node';
-import { Descriptor } from 'pip-services-commons-node'; 
-import { DependencyResolver } from 'pip-services-commons-node';
-import { BadRequestException } from 'pip-services-commons-node';
-import { UnauthorizedException } from 'pip-services-commons-node';
-import { HttpRequestDetector } from 'pip-services-rpc-node';
+import { ConfigParams } from 'pip-services3-commons-node';
+import { IReferences } from 'pip-services3-commons-node';
+import { Descriptor } from 'pip-services3-commons-node'; 
+import { DependencyResolver } from 'pip-services3-commons-node';
+import { BadRequestException } from 'pip-services3-commons-node';
+import { UnauthorizedException } from 'pip-services3-commons-node';
+import { HttpRequestDetector } from 'pip-services3-rpc-node';
 
 import { IAccountsClientV1 } from 'pip-clients-accounts-node';
 import { AccountV1 } from 'pip-clients-accounts-node';
@@ -21,7 +21,7 @@ import { EmailSettingsV1 } from 'pip-clients-emailsettings-node';
 import { ISmsSettingsClientV1 } from 'pip-clients-smssettings-node';
 import { SmsSettingsV1 } from 'pip-clients-smssettings-node';
 
-import { FacadeOperations } from 'pip-services-facade-node';
+import { FacadeOperations } from 'pip-services3-facade-node';
 import { SessionUserV1 } from './SessionUserV1';
 
 export class SessionsOperationsV1  extends FacadeOperations {
