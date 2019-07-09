@@ -7,7 +7,7 @@ export declare class ActivitiesOperationsV1 extends FacadeOperations {
     getActivitiesOperation(): (req: any, res: any) => void;
     getPartyActivitiesOperation(): (req: any, res: any) => void;
     logPartyActivityOperation(): (req: any, res: any) => void;
-    private getActivities;
-    private getPartyActivities;
-    private logPartyActivity;
+    private getActivities(req, res);
+    private getPartyActivities(req, res);
+    private logPartyActivity(req, res);
 }

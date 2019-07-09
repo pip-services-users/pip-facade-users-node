@@ -9,8 +9,8 @@ export declare class SmsSettingsOperationsV1 extends FacadeOperations {
     setSmsSettingsOperation(): (req: any, res: any) => void;
     resendVerificationOperation(): (req: any, res: any) => void;
     verifyPhoneOperation(): (req: any, res: any) => void;
-    private getSmsSettings;
-    private setSmsSettings;
-    private resendVerification;
-    private verifyPhone;
+    private getSmsSettings(req, res);
+    private setSmsSettings(req, res);
+    private resendVerification(req, res);
+    private verifyPhone(req, res);
 }

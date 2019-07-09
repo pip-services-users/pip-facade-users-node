@@ -25,15 +25,15 @@ export declare class SessionsOperationsV1 extends FacadeOperations {
     getUserSessionsOperation(): (req: any, res: any) => void;
     getCurrentSessionOperation(): (req: any, res: any) => void;
     closeSessionOperation(): (req: any, res: any) => void;
-    private loadSession;
-    private openSession;
-    private signup;
-    private signupValidate;
-    private signin;
-    private signout;
-    private getSessions;
-    private restoreSession;
-    private getUserSessions;
-    private getCurrentSession;
-    private closeSession;
+    private loadSession(req, res, next);
+    private openSession(req, res, account, roles);
+    private signup(req, res);
+    private signupValidate(req, res);
+    private signin(req, res);
+    private signout(req, res);
+    private getSessions(req, res);
+    private restoreSession(req, res);
+    private getUserSessions(req, res);
+    private getCurrentSession(req, res);
+    private closeSession(req, res);
 }

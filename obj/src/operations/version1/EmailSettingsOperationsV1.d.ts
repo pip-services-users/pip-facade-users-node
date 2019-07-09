@@ -9,8 +9,8 @@ export declare class EmailSettingsOperationsV1 extends FacadeOperations {
     setEmailSettingsOperation(): (req: any, res: any) => void;
     resendVerificationOperation(): (req: any, res: any) => void;
     verifyEmailOperation(): (req: any, res: any) => void;
-    private getEmailSettings;
-    private setEmailSettings;
-    private resendVerification;
-    private verifyEmail;
+    private getEmailSettings(req, res);
+    private setEmailSettings(req, res);
+    private resendVerification(req, res);
+    private verifyEmail(req, res);
 }
